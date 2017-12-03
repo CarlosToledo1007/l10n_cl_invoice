@@ -696,6 +696,10 @@ a VAT."""))
         ]
         return self.env['account.journal'].search(domain, limit=1, order="sequence asc")
 
+    @api.onchange('payment_term_id')
+    def update_payment_term_id(self):
+        self.forma_pago = self.payment_term_id.dte_sii_code or 2      
+
 
 class Referencias(models.Model):
     _name = 'account.invoice.referencias'
